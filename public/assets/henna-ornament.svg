@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180" role="img" aria-label="Kına süsleme">
+  <circle cx="90" cy="90" r="58" fill="none" stroke="#B8945C" stroke-width="1.4" opacity=".75"/>
+  <circle cx="90" cy="90" r="42" fill="none" stroke="#7B2634" stroke-width="1.1" opacity=".72"/>
+  <path d="M90 31c9 18 9 100 0 118-9-18-9-100 0-118Z" fill="none" stroke="#7B2634" stroke-width="1.1"/>
+  <path d="M31 90c18-9 100-9 118 0-18 9-100 9-118 0Z" fill="none" stroke="#7B2634" stroke-width="1.1"/>
+  <path d="M49 49c20 7 62 49 82 82-33-20-75-62-82-82Z" fill="none" stroke="#B8945C" stroke-width="1.1"/>
+  <path d="M131 49c-7 20-49 62-82 82 20-33 62-75 82-82Z" fill="none" stroke="#B8945C" stroke-width="1.1"/>
+</svg>

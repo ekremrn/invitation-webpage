@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="24" viewBox="0 0 220 24" role="img" aria-label="Altın ayraç">
+  <path d="M12 12h78" stroke="#b8a882" stroke-width="0.9" stroke-linecap="round" opacity="0.75"/>
+  <path d="M130 12h78" stroke="#b8a882" stroke-width="0.9" stroke-linecap="round" opacity="0.75"/>
+  <path d="M110 5.5 L115 12 L110 18.5 L105 12 Z" fill="none" stroke="#b8a882" stroke-width="0.9" opacity="0.85"/>
+  <circle cx="110" cy="12" r="1.4" fill="#cfc0a8" opacity="0.7"/>
+</svg>
