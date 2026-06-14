@@ -70,7 +70,7 @@ export const siteCopy = {
     henna: {
       title: "Kına anılarınızı bizimle paylaşın",
       description:
-        "Geceden kalan fotoğraf ve videolarınızı buradan nazikçe bize ulaştırabilirsiniz.",
+        "Kına gecesinden yakaladığınız fotoğraf ve videoları buradan bizimle paylaşabilirsiniz.",
       button: "Kına Fotoğraf/Video Yükle",
     },
     ceremony: {

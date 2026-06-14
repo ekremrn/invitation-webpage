@@ -228,8 +228,9 @@ export function UploadDropzone({ event }: UploadDropzoneProps) {
       </button>
 
       {hasSuccessfulUpload ? (
-        <p className="border-l-2 border-sage/45 bg-sage/10 px-4 py-3 text-sm leading-6 text-olive">
-          {siteCopy.upload.success}
+        <p className="inline-flex items-start gap-3 rounded-invitation-card border border-gold/20 bg-pearl/72 px-4 py-3 text-sm leading-6 text-olive shadow-[inset_0_1px_0_rgb(255_255_255_/_0.72),0_8px_20px_rgb(47_42_38_/_0.045)]">
+          <LineIcon name="check" className="mt-1 h-4 w-4 shrink-0 text-sage" />
+          <span>{siteCopy.upload.success}</span>
         </p>
       ) : null}
     </div>

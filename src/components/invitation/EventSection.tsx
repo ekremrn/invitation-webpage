@@ -19,6 +19,8 @@ const accentStyles = {
     ornament: assetSlots.hennaOrnament,
     ornamentClass: "opacity-[0.09]",
     detailValue: "text-burgundy",
+    subtitleBadge:
+      "border-burgundy/22 bg-burgundy/[0.055] text-burgundy shadow-[inset_0_1px_0_rgb(255_255_255_/_0.7)]",
   },
   ceremony: {
     section:
@@ -28,6 +30,8 @@ const accentStyles = {
     ornament: assetSlots.ceremonyOrnament,
     ornamentClass: "opacity-[0.12]",
     detailValue: "text-olive",
+    subtitleBadge:
+      "border-olive/22 bg-olive/[0.055] text-olive shadow-[inset_0_1px_0_rgb(255_255_255_/_0.7)]",
   },
 } as const;
 
@@ -65,8 +69,14 @@ export function EventSection({ event }: EventSectionProps) {
           </h2>
         </div>
         {event.subtitle ? (
-          <p className="relative mt-4 text-sm leading-7 text-muted">
-            {event.subtitle}
+          <p
+            className={`relative mt-5 inline-flex max-w-full items-start gap-2 rounded-invitation-pill border px-4 py-2 text-left text-sm leading-6 ${styles.subtitleBadge}`}
+          >
+            <span
+              className="mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full bg-current opacity-70"
+              aria-hidden="true"
+            />
+            <span className="min-w-0">{event.subtitle}</span>
           </p>
         ) : null}
         <Countdown event={event} />
