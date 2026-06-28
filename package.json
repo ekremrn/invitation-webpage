@@ -7,6 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "generate:print": "python3 scripts/generate-print-assets.py",
     "lint": "eslint"
   },
   "dependencies": {

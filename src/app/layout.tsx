@@ -18,9 +18,42 @@ const jost = Jost({
   display: "swap",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://evleniyoz.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: siteCopy.metadata.title,
   description: siteCopy.metadata.description,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: siteCopy.metadata.title,
+    description: siteCopy.metadata.description,
+    url: "/",
+    siteName: siteCopy.metadata.title,
+    locale: "tr_TR",
+    type: "website",
+    images: [
+      {
+        url: siteCopy.metadata.image,
+        width: 1200,
+        height: 630,
+        alt: siteCopy.metadata.imageAlt,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteCopy.metadata.title,
+    description: siteCopy.metadata.description,
+    images: [
+      {
+        url: siteCopy.metadata.image,
+        alt: siteCopy.metadata.imageAlt,
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

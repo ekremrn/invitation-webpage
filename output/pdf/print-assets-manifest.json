@@ -1,0 +1,37 @@
+{
+  "generated": {
+    "pdfs": [
+      "output/pdf/irem-ekrem-katlamali-davetiye-print.pdf",
+      "output/pdf/irem-ekrem-masa-cadiri-henna-print.pdf",
+      "output/pdf/irem-ekrem-masa-cadiri-ceremony-print.pdf"
+    ],
+    "previews": [
+      "output/pdf/previews/irem-ekrem-katlamali-davetiye-print-1.png",
+      "output/pdf/previews/irem-ekrem-katlamali-davetiye-print-2.png",
+      "output/pdf/previews/irem-ekrem-masa-cadiri-henna-print-1.png",
+      "output/pdf/previews/irem-ekrem-masa-cadiri-ceremony-print-1.png"
+    ],
+    "openGraphImage": "public/assets/og-invitation.png"
+  },
+  "printSpecs": {
+    "mainInvitation": {
+      "closedTrim": "130x180 mm",
+      "openTrim": "260x180 mm",
+      "bleed": "3 mm",
+      "pages": [
+        "outside spread: back cover on the left, front cover on the right",
+        "inside spread: kına on the left, nikah on the right"
+      ]
+    },
+    "tableTents": {
+      "openTrim": "210x148 mm",
+      "foldedVisibleFace": "105x148 mm",
+      "bleed": "3 mm"
+    }
+  },
+  "qrTargets": {
+    "mainInvitation": "https://evleniyoz.com/",
+    "hennaTableTent": "https://evleniyoz.com/upload/henna",
+    "ceremonyTableTent": "https://evleniyoz.com/upload/ceremony"
+  }
+}

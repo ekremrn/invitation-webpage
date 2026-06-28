@@ -2,6 +2,8 @@ export const siteCopy = {
   metadata: {
     title: "İrem & Ekrem",
     description: "İrem ve Ekrem'in dijital davetiyesi.",
+    image: "/assets/og-invitation.png",
+    imageAlt: "İrem ve Ekrem düğün davetiyesi",
   },
   hero: {
     eyebrow: "Bu güzel güne davetlisiniz",
