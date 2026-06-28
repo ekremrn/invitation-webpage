@@ -17,7 +17,7 @@ export const siteCopy = {
     subtitle: "Kına gecemizde ve nikahımızda yanımızda olmanız dileğiyle.",
   },
   invitation: {
-    body: "Bu güzel başlangıcın sevincini, dualarınızı ve en kıymetli anılarımızı sizinle paylaşmak isteriz.",
+    body: "Bu güzel başlangıcın sevincini ve en kıymetli anılarımızı sizinle paylaşmak isteriz.",
   },
   eventDetails: {
     time: "Saat",
@@ -94,7 +94,7 @@ export const siteCopy = {
     button: "Yüklemeye Başla",
   },
   final: {
-    body: "Varlığınız, dualarınız ve güzel dilekleriniz bizim için en kıymetli hediye.",
+    body: "Varlığınız ve güzel dilekleriniz bizim için en kıymetli hediye.",
     signature: "İrem & Ekrem",
   },
   placeholders: {
