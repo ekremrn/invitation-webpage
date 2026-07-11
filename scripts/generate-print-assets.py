@@ -412,11 +412,11 @@ def draw_front_cover(c: canvas.Canvas, site_copy: dict[str, Any], asset_slots: d
     draw_cover_image(
         c,
         asset_path(asset_slots["mediterraneanBotanicalRight"]),
-        x + w - 81 * mm,
-        y - 11 * mm,
-        92 * mm,
-        74 * mm,
-        alpha=0.2,
+        x + w - 64 * mm,
+        y - 24 * mm,
+        78 * mm,
+        63 * mm,
+        alpha=0.1,
     )
     draw_cover_image(
         c,
@@ -429,41 +429,44 @@ def draw_front_cover(c: canvas.Canvas, site_copy: dict[str, Any], asset_slots: d
     )
     draw_panel_frame(c, x, y, w, h, GOLD, 0.32)
 
-    draw_center_text(c, "İE", cx, y + h - 24 * mm, "GeorgiaCustomItalic", 18, GOLD)
+    draw_center_text(c, "İE", cx, y + h - 22 * mm, "GeorgiaCustomItalic", 18, GOLD)
     draw_tracking_text(
         c,
         "BU GÜZEL GÜNE DAVETLİSİNİZ",
         cx,
-        y + h - 42 * mm,
+        y + h - 38 * mm,
         "NotoSansCustom",
         7.2,
         MUTED,
         1.15,
     )
     names = site_copy["hero"]["names"]
-    draw_center_text(c, names["bride"], cx, y + h - 73 * mm, "GeorgiaCustomItalic", 42, CHARCOAL)
-    draw_center_text(c, names["joiner"], cx, y + h - 89 * mm, "GeorgiaCustomItalic", 23, GOLD)
-    draw_center_text(c, names["groom"], cx, y + h - 116 * mm, "GeorgiaCustomItalic", 42, CHARCOAL)
-    draw_rule(c, cx, y + h - 130 * mm, 46 * mm, GOLD)
+    draw_center_text(c, names["bride"], cx, y + h - 61 * mm, "GeorgiaCustomItalic", 38, CHARCOAL)
+    draw_center_text(c, site_copy["familyNames"]["bride"], cx, y + h - 71 * mm, "GeorgiaCustom", 9.4, MUTED)
+    draw_center_text(c, names["joiner"], cx, y + h - 83 * mm, "GeorgiaCustomItalic", 20, GOLD)
+    draw_center_text(c, names["groom"], cx, y + h - 103 * mm, "GeorgiaCustomItalic", 38, CHARCOAL)
+    draw_center_text(c, site_copy["familyNames"]["groom"], cx, y + h - 113 * mm, "GeorgiaCustom", 9.4, MUTED)
+    draw_rule(c, cx, y + h - 124 * mm, 46 * mm, GOLD)
+    subtitle_style = ParagraphStyle(
+        "frontSubtitle",
+        fontName="NotoSansCustom",
+        fontSize=8.6,
+        leading=12.4,
+        alignment=1,
+        textColor=MUTED,
+    )
+    draw_paragraph(c, site_copy["hero"]["subtitle"], x + 22 * mm, y + h - 133 * mm, w - 44 * mm, subtitle_style)
+
     draw_tracking_text(
         c,
         clean_text(site_copy["hero"]["dateLine"]).upper(),
         cx,
-        y + h - 143 * mm,
+        y + 16 * mm,
         "NotoSansCustom",
-        7.4,
+        7.2,
         OLIVE,
-        1.1,
+        1.0,
     )
-    subtitle_style = ParagraphStyle(
-        "frontSubtitle",
-        fontName="NotoSansCustom",
-        fontSize=9.6,
-        leading=15,
-        alignment=1,
-        textColor=MUTED,
-    )
-    draw_paragraph(c, site_copy["hero"]["subtitle"], x + 22 * mm, y + h - 153 * mm, w - 44 * mm, subtitle_style)
 
 
 def draw_back_cover(c: canvas.Canvas, site_copy: dict[str, Any], asset_slots: dict[str, str]) -> None:

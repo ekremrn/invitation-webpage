@@ -19,6 +19,10 @@ export const siteCopy = {
   invitation: {
     body: "Bu güzel başlangıcın sevincini ve en kıymetli anılarımızı sizinle paylaşmak isteriz.",
   },
+  familyNames: {
+    bride: "Caner & Nihan Uğurlar",
+    groom: "Belkıs Kuşçu & Ailesi",
+  },
   eventDetails: {
     time: "Saat",
     venue: "Mekan",

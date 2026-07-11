@@ -10,7 +10,7 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-title"
-      className="invitation-section relative flex min-h-[86svh] flex-col items-center justify-center overflow-hidden text-center"
+      className="invitation-section relative flex min-h-[92svh] flex-col items-center justify-center overflow-hidden text-center"
     >
       <Image
         src={assetSlots.heroBotanical}
@@ -91,17 +91,23 @@ export function Hero() {
             <span className="block text-[5.1rem] sm:text-[6.9rem]">
               {siteCopy.hero.names.bride}
             </span>
+            <span className="mt-1 block font-display text-[1.15rem] font-[400] not-italic leading-tight text-muted sm:text-xl">
+              {siteCopy.familyNames.bride}
+            </span>
             <span className="mx-auto my-3 flex h-12 w-12 items-center justify-center rounded-full border border-gold/35 bg-pearl/52 text-3xl not-italic leading-none text-gold shadow-[inset_0_1px_0_rgb(255_255_255_/_0.68)]">
               {siteCopy.hero.names.joiner}
             </span>
             <span className="block text-[5.1rem] sm:text-[6.9rem]">
               {siteCopy.hero.names.groom}
             </span>
+            <span className="mt-1 block font-display text-[1.15rem] font-[400] not-italic leading-tight text-muted sm:text-xl">
+              {siteCopy.familyNames.groom}
+            </span>
           </h1>
         </Reveal>
 
         <Reveal delay={0.28}>
-          <p className="invitation-kicker mt-8 text-olive">
+          <p className="invitation-kicker mt-7 text-olive">
             {siteCopy.hero.dateLine}
           </p>
         </Reveal>
