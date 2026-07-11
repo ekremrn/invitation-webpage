@@ -24,8 +24,9 @@
       ]
     },
     "tableTents": {
-      "openTrim": "210x148 mm",
-      "foldedVisibleFace": "105x148 mm",
+      "openTrim": "148x210 mm",
+      "foldedVisibleFace": "148x105 mm",
+      "fold": "horizontal center fold; the upper panel is inverted for the reverse face",
       "bleed": "3 mm"
     }
   },

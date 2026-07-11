@@ -57,11 +57,12 @@ MAIN_PAGE_W = MAIN_TRIM_W + (2 * BLEED)
 MAIN_PAGE_H = MAIN_TRIM_H + (2 * BLEED)
 MAIN_PANEL_W = MAIN_TRIM_W / 2
 
-TENT_TRIM_W = 210 * mm
-TENT_TRIM_H = 148 * mm
+TENT_FACE_W = 148 * mm
+TENT_FACE_H = 105 * mm
+TENT_TRIM_W = TENT_FACE_W
+TENT_TRIM_H = TENT_FACE_H * 2
 TENT_PAGE_W = TENT_TRIM_W + (2 * BLEED)
 TENT_PAGE_H = TENT_TRIM_H + (2 * BLEED)
-TENT_PANEL_W = TENT_TRIM_W / 2
 
 IVORY = colors.HexColor("#f7efe2")
 PEARL = colors.HexColor("#fffdf8")
@@ -275,6 +276,15 @@ def draw_fold_marks(c: canvas.Canvas, x: float, page_h: float, bleed: float = BL
     c.setLineWidth(0.32)
     c.line(x, 0.8 * mm, x, bleed - 0.8 * mm)
     c.line(x, page_h - bleed + 0.8 * mm, x, page_h - 0.8 * mm)
+    c.restoreState()
+
+
+def draw_horizontal_fold_marks(c: canvas.Canvas, y: float, page_w: float, bleed: float = BLEED) -> None:
+    c.saveState()
+    c.setStrokeColor(with_alpha(OLIVE, 0.38))
+    c.setLineWidth(0.32)
+    c.line(0.8 * mm, y, bleed - 0.8 * mm, y)
+    c.line(page_w - bleed + 0.8 * mm, y, page_w - 0.8 * mm, y)
     c.restoreState()
 
 
@@ -668,82 +678,106 @@ def draw_tent_face(
     w: float,
     h: float,
     asset_slots: dict[str, str],
+    rotation: int = 0,
 ) -> None:
     accent = event_accent(event)
     soft = event_soft_accent(event)
-    cx = x + w / 2
+    content_w = 70 * mm
+    content_x = 8 * mm
+    content_cx = content_x + content_w / 2
+    qr_size = 44 * mm
+    qr_x = w - 14 * mm - qr_size
+    qr_y = (h - qr_size) / 2 + 2 * mm
+    divider_x = qr_x - 8 * mm
 
     c.saveState()
+    c.translate(x + w / 2, y + h / 2)
+    c.rotate(rotation)
+    c.translate(-w / 2, -h / 2)
     c.setFillColor(PEARL)
-    c.rect(x, y, w, h, fill=1, stroke=0)
+    c.rect(0, 0, w, h, fill=1, stroke=0)
     c.setFillColor(with_alpha(accent, 0.045))
-    c.rect(x, y, w, h, fill=1, stroke=0)
-    c.restoreState()
+    c.rect(0, 0, w, h, fill=1, stroke=0)
     draw_cover_image(
         c,
         asset_path(asset_slots["mediterraneanBotanicalAccent"]),
-        x - 17 * mm,
-        y + h - 52 * mm,
-        61 * mm,
-        49 * mm,
-        alpha=0.15,
+        -18 * mm,
+        -8 * mm,
+        54 * mm,
+        43 * mm,
+        alpha=0.12,
     )
-    draw_panel_frame(c, x, y, w, h, accent, 0.26)
+    draw_panel_frame(c, 0, 0, w, h, accent, 0.26)
 
-    draw_tracking_text(c, "ANI DEFTERİ", cx, y + h - 24 * mm, "NotoSansCustom", 7, soft, 1.05)
-    draw_center_text(c, event["title"], cx, y + h - 42 * mm, "GeorgiaCustomItalic", 28, CHARCOAL)
+    draw_tracking_text(c, "ANI DEFTERİ", content_cx, h - 23 * mm, "NotoSansCustom", 6.8, soft, 0.95)
+    draw_center_text(c, event["title"], content_cx, h - 43 * mm, "GeorgiaCustomItalic", 21, CHARCOAL)
     body_style = ParagraphStyle(
         f"{event['key']}TentBody",
         fontName="NotoSansCustom",
-        fontSize=8.2,
-        leading=12.2,
+        fontSize=7.7,
+        leading=10.8,
         alignment=1,
         textColor=MUTED,
     )
     draw_paragraph(
         c,
         "Fotoğraf ve videolarınızı bizimle paylaşın.",
-        x + 17 * mm,
-        y + h - 55 * mm,
-        w - 34 * mm,
+        content_x,
+        h - 57 * mm,
+        content_w,
         body_style,
     )
-    qr_size = 46 * mm
-    draw_qr_code(c, url, cx - qr_size / 2, y + 37 * mm, qr_size, CHARCOAL)
+    c.saveState()
+    c.setStrokeColor(with_alpha(accent, 0.22))
+    c.setLineWidth(0.42)
+    c.line(divider_x, 16 * mm, divider_x, h - 16 * mm)
+    c.restoreState()
+    draw_qr_code(c, url, qr_x, qr_y, qr_size, CHARCOAL)
     draw_tracking_text(
         c,
         url.replace("https://", "").upper(),
-        cx,
-        y + 27 * mm,
+        qr_x + qr_size / 2,
+        18 * mm,
         "NotoSansCustomBold",
-        6.6,
+        5.8,
         accent,
-        0.55,
+        0.32,
     )
-    draw_rule(c, cx, y + 18.5 * mm, 38 * mm, accent)
-    draw_center_text(c, "İrem & Ekrem", cx, y + 10.5 * mm, "GeorgiaCustomItalic", 13.5, CHARCOAL)
+    draw_rule(c, content_cx, 24 * mm, 43 * mm, accent)
+    draw_center_text(c, "İrem & Ekrem", content_cx, 12 * mm, "GeorgiaCustomItalic", 12.5, CHARCOAL)
+    c.restoreState()
 
 
 def generate_table_tent(event: dict[str, Any], url: str, asset_slots: dict[str, str]) -> Path:
     filename = f"irem-ekrem-masa-cadiri-{event['key']}-print.pdf"
     path = OUTPUT_DIR / filename
-    c = canvas.Canvas(str(path), pagesize=landscape((TENT_PAGE_H, TENT_PAGE_W)), pageCompression=1)
+    c = canvas.Canvas(str(path), pagesize=(TENT_PAGE_W, TENT_PAGE_H), pageCompression=1)
     c.setTitle(f"İrem & Ekrem {event['title']} Masa Çadırı")
     c.setAuthor("İrem & Ekrem")
     draw_background(c, asset_slots, TENT_PAGE_W, TENT_PAGE_H)
-    draw_tent_face(c, event, url, BLEED, BLEED, TENT_PANEL_W, TENT_TRIM_H, asset_slots)
     draw_tent_face(
         c,
         event,
         url,
-        BLEED + TENT_PANEL_W,
         BLEED,
-        TENT_PANEL_W,
-        TENT_TRIM_H,
+        BLEED + TENT_FACE_H,
+        TENT_FACE_W,
+        TENT_FACE_H,
+        asset_slots,
+        rotation=180,
+    )
+    draw_tent_face(
+        c,
+        event,
+        url,
+        BLEED,
+        BLEED,
+        TENT_FACE_W,
+        TENT_FACE_H,
         asset_slots,
     )
     draw_crop_marks(c, TENT_PAGE_W, TENT_PAGE_H, TENT_TRIM_W, TENT_TRIM_H)
-    draw_fold_marks(c, TENT_PAGE_W / 2, TENT_PAGE_H)
+    draw_horizontal_fold_marks(c, BLEED + TENT_FACE_H, TENT_PAGE_W)
     c.save()
     return path
 
@@ -869,8 +903,9 @@ def write_support_files(pdf_paths: list[Path], preview_paths: list[Path], og_pat
                 ],
             },
             "tableTents": {
-                "openTrim": "210x148 mm",
-                "foldedVisibleFace": "105x148 mm",
+                "openTrim": "148x210 mm",
+                "foldedVisibleFace": "148x105 mm",
+                "fold": "horizontal center fold; the upper panel is inverted for the reverse face",
                 "bleed": "3 mm",
             },
         },
@@ -899,7 +934,7 @@ def write_support_files(pdf_paths: list[Path], preview_paths: list[Path], og_pat
             "# Print Notes\n\n"
             "- Ana davetiye iki sayfalı PDF'tir. 1. sayfa dış yüz, 2. sayfa iç yüzdür.\n"
             "- Ana davetiye kapalı ölçü 130x180 mm, açık ölçü 260x180 mm, 3 mm bleed ile hazırlanmıştır.\n"
-            "- Masa çadırları açık A5 yataydır; ortadan katlanınca her yüz 105x148 mm görünür.\n"
+            "- Masa çadırları açık A5 dikeydir; yatay orta çizgiden katlanınca her yüz 148x105 mm görünür. Üst panel, karşı yüzde düzgün okunması için baskıda ters yöndedir.\n"
             "- QR hedefleri `print-assets-manifest.json` içinde listelenmiştir.\n"
             "- Basımcı CMYK/PDF-X isterse bu PDF'lerden ayrıca matbaa profiline göre dönüştürme yapılmalıdır.\n"
         ),
