@@ -100,6 +100,8 @@ export const siteCopy = {
   final: {
     body: "Varlığınız ve güzel dilekleriniz bizim için en kıymetli hediye.",
     signature: "İrem & Ekrem",
+    hostedAt: "evleniyoz.com",
+    repositoryLabel: "GitHub proje sayfasını aç",
   },
   placeholders: {
     label: "Dijital Davetiye",

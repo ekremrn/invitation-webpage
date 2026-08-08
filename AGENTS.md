@@ -18,7 +18,7 @@ This file is an operating guide for future humans and AI agents. It documents th
   - `pnpm lint` - run ESLint.
   - No test script exists. Use `pnpm exec tsc --noEmit` for an explicit type check when needed.
 - **Deployment target:** Netlify is detectable through `netlify.toml`, with `pnpm build` and `.next` as the publish directory.
-- **Persistence/integration:** Hetzner Object Storage, or another S3-compatible object store, is used as object storage; metadata is written as JSON sidecar objects in the same bucket.
+- **Persistence/integration:** Cloudflare R2 is used through its S3-compatible API; metadata is written as JSON sidecar objects in the same private bucket.
 
 ## Current project structure
 - `src/app/` - Next App Router entrypoints, route-level metadata, static params, and API routes.
@@ -39,6 +39,7 @@ This file is an operating guide for future humans and AI agents. It documents th
 - `public/assets/` - committed decorative image and SVG assets.
 - `public/audio/` - committed invitation audio, including `background.mp3`.
 - `public/robots.txt` - blocks `/upload` and `/qr`.
+- `public/llms.txt` - concise machine-readable project and live-site information.
 - `.env.example` - required Object Storage, upload-security, and public site URL environment variables.
 - `package.json`, `pnpm-lock.yaml`, `pnpm-workspace.yaml`, `.npmrc` - package, lockfile, and pnpm-specific setup.
 - `next.config.ts`, `postcss.config.mjs`, `eslint.config.mjs`, `tsconfig.json` - framework, Tailwind/PostCSS, lint, and TypeScript configuration.
@@ -59,7 +60,7 @@ Data flow:
 - Display copy lives in `src/content/copy.ts`.
 - UI reads config/copy directly and passes typed `EventConfig` objects down to components.
 - Upload UI validates files locally, requests a signing URL from the API, uploads directly to Object Storage with XHR for progress, and stores a session id in `sessionStorage`.
-- S3-compatible Object Storage is the persistence layer. There is no database, ORM, migration system, queue, worker, or admin/download surface in the current tree.
+- Cloudflare R2 through its S3-compatible API is the persistence layer. There is no database, ORM, migration system, queue, worker, or admin/download surface in the current tree.
 
 State management is intentionally local. Client components use React hooks and refs for browser APIs, countdown timers, clipboard actions, music playback, and upload queue processing. There is no global store.
 
@@ -179,7 +180,7 @@ Business logic is split by portability:
 - There is no ADR, CI config, or test setup in the working tree.
 - README screenshots live under `docs/screenshots/` and should be regenerated when the visible page design meaningfully changes.
 - Netlify deployment is configured minimally. Any required Netlify Next.js adapter/plugin behavior is not documented in the repo.
-- Hetzner Object Storage bucket CORS, lifecycle policy, access policy, and owner download workflow are not represented in code.
+- Cloudflare R2 bucket CORS, lifecycle policy, access policy, and owner download workflow are not represented in code.
 - Upload signing validation is route-local. If more API endpoints appear, common API validation/error helpers may become worthwhile, but that abstraction does not exist yet.
 
 ## Maintenance note

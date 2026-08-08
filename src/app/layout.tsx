@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Jost } from "next/font/google";
+import { siteConfig } from "@/config/site";
 import { siteCopy } from "@/content/copy";
 import "./globals.css";
 
@@ -18,7 +19,7 @@ const jost = Jost({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://evleniyoz.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.liveUrl;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

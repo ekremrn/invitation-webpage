@@ -1,0 +1,25 @@
+# İrem & Ekrem Dijital Davetiye
+
+> İrem ve Ekrem için hazırlanmış, Türkçe dijital düğün davetiyesi.
+
+## Canlı site
+
+- [Ana davetiye](https://evleniyoz.com/): Davetiyenin ana sayfası.
+- [Kına anıları](https://evleniyoz.com/qr/henna): Kına gecesi fotoğraf ve video yükleme yönlendirmesi.
+- [Nikah anıları](https://evleniyoz.com/qr/ceremony): Nikah fotoğraf ve video yükleme yönlendirmesi.
+
+## Kaynak kodu
+
+- [GitHub repository](https://github.com/ekremrn/invitation-webpage): Uygulamanın kaynak kodu ve dokümantasyonu.
+
+## Teknik bilgiler
+
+- Next.js App Router, TypeScript, React ve Tailwind CSS v4 kullanır.
+- Site Netlify üzerinde `evleniyoz.com` custom domain’i ile yayınlanır.
+- Guest fotoğraf/video yüklemeleri Cloudflare R2 S3 API üzerinden presigned PUT URL’leriyle yapılır.
+- Upload metadata kayıtları aynı R2 bucket’ında JSON sidecar object olarak tutulur.
+- `/upload/*` ve `/qr/*` yardımcı sayfaları arama motorları için noindex olarak işaretlenmiştir.
+
+## Gizlilik sınırı
+
+- GitHub repository uygulama kodunu ve public dokümantasyonu içerir; R2 credential’ları, upload secret’ları veya yüklenen özel medya dosyaları repository’de paylaşılmaz.
