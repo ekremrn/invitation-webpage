@@ -121,7 +121,7 @@ Business logic is split by portability:
 - Validation belongs on both sides when it protects UX and storage: client-side validation for immediate feedback, server-side validation for trust boundaries.
 - API response shapes belong in `src/types/upload.ts`; API routes and clients should share those contracts instead of ad hoc JSON shapes.
 - Server secrets must stay in server-only paths such as API routes and Object Storage/security helpers. Never expose Object Storage credentials or `UPLOAD_IP_HASH_SECRET` through client components or `NEXT_PUBLIC_*`.
-- Preserve the Object Storage key pattern under `uploads/{event}/{sessionId}/files/` and `uploads/{event}/{sessionId}/metadata/` unless a migration plan is written.
+- Preserve the Object Storage key pattern under `uploads/{event}/media/{yyyy-mm-dd}/` and `uploads/{event}/metadata/{yyyy-mm-dd}/`. Include the timestamp, session id, and upload id in each object filename. Existing objects are not migrated automatically when this pattern changes.
 - Use `NextResponse.json()` with explicit error codes for API failures. Keep client-facing errors stable enough for upload UI to handle.
 - UI should remain mobile-first and invitation-shaped: a narrow `InvitationShell`, semantic sections, Turkish copy, accessible labels, focus-visible styles, and restrained token-based colors.
 - Use `Reveal` and `ParallaxLayer` for scroll animation patterns and respect reduced motion. Do not add animation libraries when `motion` already covers the need.

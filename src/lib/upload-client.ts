@@ -170,8 +170,8 @@ function simulateLocalUpload({
       resolve({
         uploadId,
         sessionId,
-        objectKey: `uploads/${eventKey}/${sessionId}/files/local_${uploadId}_${file.name}`,
-        metadataKey: `uploads/${eventKey}/${sessionId}/metadata/local_${uploadId}.json`,
+        objectKey: `uploads/${eventKey}/media/${createLocalDatePrefix(issuedAt)}/${createLocalTimestamp(issuedAt)}_${sessionId}_${uploadId}.${getLocalFileExtension(file.name)}`,
+        metadataKey: `uploads/${eventKey}/metadata/${createLocalDatePrefix(issuedAt)}/${createLocalTimestamp(issuedAt)}_${sessionId}_${uploadId}.json`,
         uploadUrl: "local-development-upload",
         expiresAt,
       });
@@ -185,6 +185,21 @@ function createLocalUploadId(): string {
   }
 
   return `upload_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 10)}`;
+}
+
+function createLocalDatePrefix(date: Date): string {
+  return date.toISOString().slice(0, 10);
+}
+
+function createLocalTimestamp(date: Date): string {
+  return date.toISOString().replace(/\.\d{3}Z$/, "Z").replaceAll(":", "-");
+}
+
+function getLocalFileExtension(fileName: string): string {
+  const rawExtension = fileName.split(".").pop()?.toLowerCase() ?? "";
+  const safeExtension = rawExtension.replace(/[^a-z0-9]/g, "");
+
+  return safeExtension || "bin";
 }
 
 function isUploadSignErrorResponse(

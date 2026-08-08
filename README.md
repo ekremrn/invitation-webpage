@@ -90,8 +90,10 @@ The current upload constraints are:
 - Accepted file types: images and videos.
 - Upload method: one presigned `PUT` per file.
 - Parallel upload limit: 3 files.
-- Object keys stay under `uploads/{event}/{sessionId}/files/`.
-- Metadata keys stay under `uploads/{event}/{sessionId}/metadata/`.
+- Media keys stay under `uploads/{event}/media/{yyyy-mm-dd}/` and include the
+  timestamp, session id, and upload id in the filename.
+- Metadata keys stay under `uploads/{event}/metadata/{yyyy-mm-dd}/` and use the
+  same timestamp, session id, and upload id for easy matching.
 
 In local development, missing Object Storage configuration returns
 `STORAGE_CONFIGURATION_ERROR`; the browser upload client uses that error to run

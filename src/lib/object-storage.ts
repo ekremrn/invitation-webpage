@@ -111,7 +111,10 @@ export function createObjectKey({
   fileName: string;
   issuedAt?: Date;
 }): string {
-  return `uploads/${event}/${sessionId}/files/${createSafeTimestamp(issuedAt)}_${uploadId}.${getSafeExtension(fileName)}`;
+  const timestamp = createSafeTimestamp(issuedAt);
+  const date = createDatePrefix(issuedAt);
+
+  return `uploads/${event}/media/${date}/${timestamp}_${sessionId}_${uploadId}.${getSafeExtension(fileName)}`;
 }
 
 export function createMetadataKey({
@@ -125,7 +128,14 @@ export function createMetadataKey({
   uploadId: string;
   issuedAt?: Date;
 }): string {
-  return `uploads/${event}/${sessionId}/metadata/${createSafeTimestamp(issuedAt)}_${uploadId}.json`;
+  const timestamp = createSafeTimestamp(issuedAt);
+  const date = createDatePrefix(issuedAt);
+
+  return `uploads/${event}/metadata/${date}/${timestamp}_${sessionId}_${uploadId}.json`;
+}
+
+function createDatePrefix(date: Date): string {
+  return date.toISOString().slice(0, 10);
 }
 
 function createSafeTimestamp(date: Date): string {
